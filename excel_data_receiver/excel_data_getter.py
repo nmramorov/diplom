@@ -1,5 +1,6 @@
 from collections import namedtuple
 from typing import List
+from pprint import pprint
 
 from openpyxl import load_workbook, Workbook
 
@@ -20,8 +21,8 @@ class ExcelDataGetter:
     def find_start_values_row(self, sheet: Workbook.active = None) -> int:
         if sheet is None:
             sheet = self.excel_file.active
-        for row_index, row_values in enumerate(sheet.iter_rows(values_only=True)):
-            if 'Место' in row_values:
+        for row_index, row_values in enumerate(sheet.iter_rows(min_row=1, max_row=6, values_only=True)):
+            if 'Ст.№' in row_values or 'Место' in row_values:
                 # Перебор ведется от нулевого ряда, для верного отображения стартового ряда необходимо прибавить 2
                 return row_index + 2
 
@@ -39,3 +40,6 @@ class ExcelDataGetter:
 
     def get_excel_data(self) -> List:
         return [self.get_required_data(sheet) for sheet in self.excel_file]
+
+    def show_excel_data(self) -> None:
+        pprint(self.get_excel_data())

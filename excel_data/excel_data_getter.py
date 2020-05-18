@@ -1,6 +1,6 @@
 from collections import namedtuple
-from typing import List
 from pprint import pprint
+from typing import List
 
 from openpyxl import load_workbook, Workbook
 
@@ -9,8 +9,8 @@ class ExcelDataGetter:
     def __init__(self, filename: str):
         self.excel_file = load_workbook(filename)
         self.filename = filename
-        self.required_data = ['index', 'identifier', 'initials', 'team', 'year_of_birth', 'grade', 'first_track',
-                              'second_track', 'sum']
+        self.required_data = ['index', 'identifier', 'initials', 'team', 'year_of_birth', 'grade',
+                              'first_track', 'second_track', 'sum']
 
     def __repr__(self) -> str:
         return f'Excel file: {self.filename}. Required data is {self.required_data}'
@@ -22,7 +22,7 @@ class ExcelDataGetter:
         if sheet is None:
             sheet = self.excel_file.active
         for row_index, row_values in enumerate(sheet.iter_rows(min_row=1, max_row=6, values_only=True)):
-            if 'Ст.№' in row_values or 'Место' in row_values:
+            if 'Ст.№' in row_values:
                 # Перебор ведется от нулевого ряда, для верного отображения стартового ряда необходимо прибавить 2
                 return row_index + 2
 

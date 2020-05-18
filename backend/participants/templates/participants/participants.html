@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Current participants
+        </title>
+    </head>
+    <body>
+        <h1>
+            {% for participant in participants %}
+            <li>
+                {{ participant.participant_initials }}
+            </li>
+            {% endfor %}
+        </h1>
+    </body>
+</html>

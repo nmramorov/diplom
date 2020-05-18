@@ -1,6 +1,6 @@
 import unittest
 
-from excel_data_receiver.excel_data_getter import ExcelDataGetter
+from excel_data.excel_data_getter import ExcelDataGetter
 
 
 class TestExcelReceiver(unittest.TestCase):
@@ -21,7 +21,6 @@ class TestExcelReceiver(unittest.TestCase):
     def test_get_excel_data(self):
         self.assertNotEqual(self.test_file.get_excel_data(), None)
         self.assertNotEqual(self.test_file.get_excel_data(), [])
-        self.test_file.show_excel_data()
 
 
 if __name__ == "__main__":

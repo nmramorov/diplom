@@ -8,19 +8,20 @@ from . import views
 
 
 # Serializers define the API representation.
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class ParticipantsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Participants
-        fields = ['sheet', 'index', 'identifier', 'initials']
+        fields = ['sheet', 'index', 'identifier', 'initials', 'team',
+                  'year_of_birth', 'grade', 'first_track', 'second_track', 'sum']
 
 # ViewSets define the view behavior.
-class UserViewSet(viewsets.ModelViewSet):
+class ParticipantsViewSet(viewsets.ModelViewSet):
     queryset = models.Participants.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = ParticipantsSerializer
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
-router.register(r'users', UserViewSet)
+router.register(r'participants_api', ParticipantsViewSet)
 
 app_name = 'participants_app'
 urlpatterns = [

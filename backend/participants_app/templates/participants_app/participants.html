@@ -7,9 +7,9 @@
     </head>
     <body>
         <h1>
-            {% for participant in participants %}
+            {% for participant in participants_to_show %}
             <li>
-                {{ participant.participant_initials }}
+                | {{ participant.identifier }} | {{ participant.initials }} | {{ participant.team }} | {{ participant.grade }} | {{ participant.year_of_birth }} |
             </li>
             {% endfor %}
         </h1>

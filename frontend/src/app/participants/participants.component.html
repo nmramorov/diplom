@@ -1,0 +1,21 @@
+<h2>Participants</h2>
+<ul class="participants">
+  <li *ngFor="let participant of participants"
+    [class.selected]="participant === selectedParticipant"
+    (click)="onSelect(participant)">
+    <span class="badge">{{participant.id}}</span> {{participant.name}}
+  </li>
+</ul>
+
+
+<div *ngIf="selectedParticipant">
+
+  <h2>{{selectedParticipant.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{selectedParticipant.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="selectedParticipant.name" placeholder="name"/>
+    </label>
+  </div>
+
+</div>

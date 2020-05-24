@@ -14,10 +14,12 @@ class ParticipantsSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['sheet', 'index', 'identifier', 'initials', 'team',
                   'year_of_birth', 'grade', 'first_track', 'second_track', 'sum']
 
+
 # ViewSets define the view behavior.
 class ParticipantsViewSet(viewsets.ModelViewSet):
     queryset = models.Participants.objects.all()
     serializer_class = ParticipantsSerializer
+
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()

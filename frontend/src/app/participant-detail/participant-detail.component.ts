@@ -1,6 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ParticipantService } from '../participant.service';
+import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 import { Participant} from '../../../participant';
+import {ParticipantService} from '../participant.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-participant-detail',
@@ -9,10 +11,25 @@ import { Participant} from '../../../participant';
 })
 export class ParticipantDetailComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private participantService: ParticipantService,
+    private location: Location
+  ) { }
 
-  @Input()participant: Participant;
+  participant: Participant;
 
   ngOnInit(): void {
+    this.getParticipant();
+}
+
+  getParticipant(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.participantService.getParticipant(id)
+      .subscribe(participant => this.participant = participant);
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

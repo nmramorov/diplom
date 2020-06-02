@@ -22,7 +22,10 @@ participants_table = Table('participants', meta,
                            Column('grade', String(length=5)),
                            Column('first_track', DateTime),
                            Column('second_track', DateTime),
-                           Column('sum', Integer))
+                           Column('sum', DateTime))
+
+sheets_table = Table('sheets', meta,
+                     Column('sheet', String(25), primary_key=True))
 
 
 def write_to_db(filename: str = None):
@@ -31,6 +34,7 @@ def write_to_db(filename: str = None):
     excel_data = getter.get_excel_data()
     with db.connect() as conn:
         participants_table.create()
+        sheets_table.create()
         sheet_names = getter.get_sheetnames()
 
         for sheet, sheet_name in zip(excel_data, sheet_names):
@@ -47,6 +51,9 @@ def write_to_db(filename: str = None):
                                                                       sum=participant.sum)
 
                 conn.execute(insert_statement)
+
+            insert_sheet_statement = sheets_table.insert().values(sheet=sheet_name)
+            conn.execute(insert_sheet_statement)
 
 
 if __name__ == "__main__":

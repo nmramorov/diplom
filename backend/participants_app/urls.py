@@ -1,6 +1,5 @@
 from django.urls import path
 from django.conf.urls import url, include
-from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
 
 from . import models
@@ -21,9 +20,22 @@ class ParticipantsViewSet(viewsets.ModelViewSet):
     serializer_class = ParticipantsSerializer
 
 
+class SheetsSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = models.Sheets
+        fields = ['sheet']
+
+
+# ViewSets define the view behavior.
+class SheetsViewSet(viewsets.ModelViewSet):
+    queryset = models.Sheets.objects.all()
+    serializer_class = SheetsSerializer
+
+
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'participants_api', ParticipantsViewSet)
+router.register(r'sheets_api', SheetsViewSet)
 
 app_name = 'participants_app'
 urlpatterns = [

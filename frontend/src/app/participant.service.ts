@@ -18,10 +18,10 @@ export class ParticipantService {
     return this.http.get<Participant[]>(this.participantsUrl);
   }
 
-  getParticipant(id: number): Observable<Participant> {
-      const url = `${this.participantsUrl}/${id}`;
+  getParticipant(identifier: number): Observable<Participant> {
+      const url = `${this.participantsUrl}${identifier}`;
       return this.http.get<Participant>(url).pipe(
-        catchError(this.handleError<Participant>(`getHero id=${id}`))
+        catchError(this.handleError<Participant>(`getParticipant identifier=${identifier}`))
       );
   }
 

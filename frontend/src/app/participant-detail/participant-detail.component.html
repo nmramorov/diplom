@@ -1,11 +1,17 @@
 <div *ngIf="participant">
-  <h2>{{participant.initials | uppercase}} Details</h2>
-  <div class="idStyle"><span>id: </span>{{participant.identifier}}</div>
+  <h2>{{participant.initials | uppercase}}</h2>
   <div>
-    <label>name:
-      <input [(ngModel)]="participant.initials" placeholder="name"/>
-    </label>
+    <span>Идентификационный номер: </span>{{participant.identifier}}
   </div>
-  <button (click)="goBack()">go back</button>
+  <div>
+    <span>Время первого трека: </span>{{participant.first_track}}
+  </div>
+  <div>
+    <span>Время второго трека: </span>{{participant.second_track}}
+  </div>
+  <div>
+    <span>Суммарное время: </span>{{participant.sum}}
+  </div>
+  <button (click)="goBack()">Назад</button>
 </div>
 

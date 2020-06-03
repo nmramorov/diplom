@@ -24,8 +24,8 @@ export class ParticipantDetailComponent implements OnInit {
 }
 
   getParticipant(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.participantService.getParticipant(id)
+    const identifier = +this.route.snapshot.paramMap.get('identifier');
+    this.participantService.getParticipant(identifier)
       .subscribe(participant => this.participant = participant);
   }
 

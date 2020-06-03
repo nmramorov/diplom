@@ -25,7 +25,8 @@ participants_table = Table('participants', meta,
                            Column('sum', DateTime))
 
 sheets_table = Table('sheets', meta,
-                     Column('sheet', String(25), primary_key=True))
+                     Column('sheet', String(25)),
+                     Column('identifier', Integer, primary_key=True))
 
 
 def write_to_db(filename: str = None):
@@ -52,7 +53,8 @@ def write_to_db(filename: str = None):
 
                 conn.execute(insert_statement)
 
-            insert_sheet_statement = sheets_table.insert().values(sheet=sheet_name)
+        for index, sheet_name in enumerate(sheet_names):
+            insert_sheet_statement = sheets_table.insert().values(sheet=sheet_name, identifier=index)
             conn.execute(insert_sheet_statement)
 
 

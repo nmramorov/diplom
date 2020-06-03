@@ -22,7 +22,8 @@ class Participants(models.Model):
 
 
 class Sheets(models.Model):
-    sheet = models.CharField(primary_key=True, max_length=25)
+    sheet = models.CharField(max_length=25, blank=True, null=True)
+    identifier = models.AutoField(primary_key=True)
 
     class Meta:
         managed = False

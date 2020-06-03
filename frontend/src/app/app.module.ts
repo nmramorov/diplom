@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { ParticipantsComponent } from './participants/participants.component';
 import { ParticipantDetailComponent } from './participant-detail/participant-detail.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ParticipantListComponent } from './participant-list/participant-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ParticipantsComponent,
     ParticipantDetailComponent,
-    DashboardComponent
+    DashboardComponent,
+    ParticipantListComponent
   ],
   imports: [
     HttpClientModule,

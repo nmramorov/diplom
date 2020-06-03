@@ -1,8 +1,7 @@
-<h2>Participants</h2>
-<ul class="participants">
-  <li *ngFor="let participant of participants">
-    <a routerLink="/detail/{{participant.identifier}}">
-      <span class="badge">{{participant.identifier}}</span> {{participant.initials}}
-    </a>
-  </li>
-</ul>
+<h2>Участники</h2>
+<div *ngIf="sheet">
+  <button (click)="goBack()">Назад</button>
+  <app-participant-list></app-participant-list>
+</div>
+
+

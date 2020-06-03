@@ -23,7 +23,7 @@ class ParticipantsViewSet(viewsets.ModelViewSet):
 class SheetsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Sheets
-        fields = ['sheet']
+        fields = ['sheet', 'identifier']
 
 
 # ViewSets define the view behavior.
